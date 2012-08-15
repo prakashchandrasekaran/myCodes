@@ -13,7 +13,7 @@ namespace NeedleInaHayStack
             //Console.WriteLine(w);
             //Console.ReadLine();
             Program prg = new Program();
-            prg.findNeedleInaHayStack("abecdefcdxxaccd$", "adc");
+            Console.WriteLine(prg.findNeedleInaHayStack("abecdefcadxxaccd$", "adc"));
             Console.ReadLine();
         }
 
@@ -34,7 +34,7 @@ namespace NeedleInaHayStack
                     target[c] = 1;
                 found[c] = 0;
             }
-            Console.WriteLine(DictionaryToString(target));
+            // Console.WriteLine(DictionaryToString(target));
 
             for (; currentEnd < haystack.Length ; )
             {
@@ -83,11 +83,11 @@ namespace NeedleInaHayStack
                     }
                     currentEnd++;
                 }
-                Console.WriteLine(DictionaryToString(found));
+                // Console.WriteLine(DictionaryToString(found));
 
             }
-            Console.WriteLine(optimalStart + " . " + optimalEnd);
-            return null;
+            // Console.WriteLine(optimalStart + " . " + optimalEnd);
+            return new Window(optimalStart, optimalEnd - 1);
         }
 
 
@@ -104,7 +104,7 @@ namespace NeedleInaHayStack
         
     }
 
-    class Window
+    class Window : IComparable
     {
         int start
         {get; set;}
@@ -117,11 +117,41 @@ namespace NeedleInaHayStack
             end = 0;
         }
 
+        public Window(int s, int e)
+        {
+            this.start = s;
+            this.end = e;
+        }
+
         public override string ToString()
         {
             return "(" + start + "," + end + ")";
         }
 
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+                return 1;
+
+            Window newWindow = obj as Window;
+
+            if (newWindow == null)
+                throw new ArgumentException("object is not of type window");
+
+            if (newWindow.start == start && newWindow.end == end)
+            {
+                return 0;
+            }
+            else if ((newWindow.end - newWindow.start) > (end - start))
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 
 
