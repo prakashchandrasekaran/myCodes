@@ -17,7 +17,7 @@ namespace NeedleInaHayStack
             Console.ReadLine();
         }
 
-        public Window findNeedleInaHayStack(string haystack, string needle)
+        public String findNeedleInaHayStack(string haystack, string needle)
         {
             Dictionary<char, int> target = new Dictionary<char, int>();
             Dictionary<char, int> found = new Dictionary<char, int>();
@@ -87,7 +87,8 @@ namespace NeedleInaHayStack
 
             }
             // Console.WriteLine(optimalStart + " . " + optimalEnd);
-            return new Window(optimalStart, optimalEnd - 1);
+            // return new Window(optimalStart, optimalEnd - 1);
+            return optimalStart + "," + (optimalEnd - 1);
         }
 
 
@@ -104,7 +105,7 @@ namespace NeedleInaHayStack
         
     }
 
-    class Window : IComparable
+    class Window : IComparable, IEqualityComparer<Window>
     {
         int start
         {get; set;}
@@ -128,6 +129,7 @@ namespace NeedleInaHayStack
             return "(" + start + "," + end + ")";
         }
 
+       
 
         public int CompareTo(object obj)
         {
@@ -152,7 +154,17 @@ namespace NeedleInaHayStack
                 return -1;
             }
         }
-    }
+    
+        public bool  Equals(Window x, Window y)
+        {
+            return (x.start == y.start) && (x.end == y.end);
+        }
+
+        public int  GetHashCode(Window obj)
+        {
+ 	        throw new NotImplementedException();
+        }
+}
 
 
 }
