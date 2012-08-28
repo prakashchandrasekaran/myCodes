@@ -10,10 +10,10 @@ namespace YoungTabeleau
         static void Main(string[] args)
         {
             int[,] array = new int[,] { 
-                    {1,4,5,7}, 
-                    {3,6,10,12}, 
-                    {8,9,15,18}, 
-                    {13,16,17,20}, 
+                    {1,4,5,7,9}, 
+                    {3,6,10,12,16}, 
+                    {8,9,15,18,22}, 
+                    {13,16,17,20,25}, 
             };
             for (int i = 0; i < array.GetLength(0); i++)
             {
