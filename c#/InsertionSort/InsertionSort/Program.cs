@@ -10,7 +10,7 @@ namespace InsertionSort
         static void Main(string[] args)
         {
             int[] array = {7,5,6,3,1,2,4};
-            sortIt(ref array);
+            sortIt1(ref array);
             foreach (int x in array)
             {
                 Console.WriteLine(x);
@@ -28,6 +28,19 @@ namespace InsertionSort
                 {
                     array[j + 1] = array[j];
                     j--;
+                }
+                array[j + 1] = C;
+            }
+        }
+
+        private static void sortIt1(ref int[] array)
+        {
+            int i, j, C;
+            for (i = 0; i < array.Length; i++)
+            {
+                for (j = i - 1, C = array[i]; j >= 0 && array[j] > C; j--)
+                {
+                    array[j + 1] = array[j];
                 }
                 array[j + 1] = C;
             }
