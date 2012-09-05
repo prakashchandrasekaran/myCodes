@@ -9,7 +9,7 @@ namespace MedianInUnSortedArray
     {
         static void Main(string[] args)
         {
-            int[] arr = { 4,6,9,2,7,8,1,3,5};
+            int[] arr = { 1, 1, 1, 1, 4, 6, 9, 2, 7, 8, 1, 3, 5 };
             for (int i = 0; i < arr.Length; i++)
             {
                 int medianLocation = findMedianInSortedArray(arr, i + 1, 0 , arr.Length - 1);
